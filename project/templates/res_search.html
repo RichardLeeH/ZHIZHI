@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+    <nav class="navbar navbar-fixed header">
+ 	<div class="col-md-12">
+        <div class="navbar-header">
+
+          <a href="/" class="navbar-brand">知至</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1">
+          <i class="glyphicon glyphicon-search"></i>
+          </button>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse1">
+          <form class="navbar-form pull-left">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{ data.query }}" value="{{ data.query }}" name="q" id="srch-term">
+                <div class="input-group-btn">
+                  <button class="btn btn-default btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+             <li><a href="#" target="_ext">关于</a></li>
+           </ul>
+        </div>
+     </div>
+</nav>
+
+<div class="container" id="main">
+<div class="row">
+   <div class="col-12">
+       <p>共发现{{ data.count }}条符合条件的内容，
+第<font color="red">{{ data.page }}</font>页,共<font color="red">{{ data.total_page  }}</font>页,
+用时<font color="red">{{ data.time }}</font>秒
+    {% if data.results %}
+    {% for res in data.results %}
+        <li>
+        <b> <a href="http://zhidao.baidu.com/question/{{ res.qid }}.html">{{ res.ask_title | safe }} </a></b>
+        <p><span class="text-info"> <a href="{{ res.people_link }}">{{ res.people }}</a> | 分类: {{ res.class_info }} | {{ res.ask_tags }}</span></p>
+        <blockquote class="small">{{ res.content|safe }}</blockquote>
+        <p>{{ res.answers |length }}个回答</p>
+        </li>
+    {% endfor %}
+    <nav>
+    <ul class="pagination">
+        {% if data.previous_page %}
+        <li>
+        <a href="/search/?q={{ data.query }}&page={{ data.previous_page }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>
+        {% endif %}
+    {% for num in data.page_list %}
+    <li><a href="/search/?q={{ data.query }}&page={{ num }}">{{ num }}</a></li>
+    {% endfor %}
+    {% if data.next_page %}
+    <li>
+      <a href="/search/?q={{ data.query }}&page={{ data.next_page }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% else %}
+     <p>No contents found.
+{% endif %}
+    </div>
+</div>
+    </div>
+{#    <div class="row">#}
+        <div class="search_foot">
+            <div>
+              <p> Copyright &copy; 2015 - BUAA14级 </p>
+            </div>
+          </div>
+{#    </div>#}
+{% endblock %}

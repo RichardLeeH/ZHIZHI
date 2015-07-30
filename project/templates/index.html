@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">知至</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><a href="#">关于</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <p class="lead">心之所知无不尽</p>
+            <p class="lead">
+              <form class="form-inline search" role="form" method="get" action="/search/">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search" name="q" placeholder="请输入问题">
+            </div>
+            <button type="submit" class="btn btn-success">查询</button>
+          </form>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p> Copyright &copy; 2015 - BUAA14级 </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+</div>
+{% endblock %}

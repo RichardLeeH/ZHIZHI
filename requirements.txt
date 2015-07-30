@@ -1,0 +1,15 @@
+# base 
+Flask
+Flask-WTF
+Flask-Script
+requests
+elasticsearch
+mysql-python==1.2.5
+
+# Cache and Celery
+Flask-Cache
+redis
+
+# deployment
+gevent
+gunicorn
